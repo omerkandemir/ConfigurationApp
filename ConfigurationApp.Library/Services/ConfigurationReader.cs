@@ -11,6 +11,7 @@ public class ConfigurationReader : IConfigurationReader
     private Dictionary<string, Configuration> _configurationsCache;
     private readonly string _applicationName;
     private readonly string _connectionString;
+    private static readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1); 
     public ConfigurationReader(string applicationName, string connectionString, double refreshTimerIntervalInMs)
     {
         _configurationsCache = new Dictionary<string, Configuration>();
@@ -19,7 +20,6 @@ public class ConfigurationReader : IConfigurationReader
         // Timer'ı başlat
         _timer = new System.Timers.Timer(refreshTimerIntervalInMs);
         _timer.Elapsed += RefreshConfigurations;
-
         _timer.AutoReset = true; // Zamanlayıcı her seferinde tekrar edecek
         _timer.Start();
 
@@ -33,10 +33,11 @@ public class ConfigurationReader : IConfigurationReader
         LoadConfigurations();
     }
 
-    private async void LoadConfigurations()
+    private async Task LoadConfigurations()
     {
         try
         {
+            await _semaphore.WaitAsync(); // Thread-Safety için kilitle
             DbContextOptionsBuilder<ConfigurationDbContext> optionsBuilder = AddDatabase();
             using (var context = new ConfigurationDbContext(optionsBuilder.Options))
             {
@@ -44,25 +45,29 @@ public class ConfigurationReader : IConfigurationReader
                 var configurations = await context.Configurations
                     .Where(config => config.ApplicationName == _applicationName && config.IsActive)
                     .ToListAsync();
-                Console.WriteLine($"Using ApplicationName: {_applicationName}");
 
-                foreach (var config in configurations)
+                // Yeni verileri cache'e ekle
+                if (configurations != null && configurations.Count > 0)
                 {
-                    if (!_configurationsCache.ContainsKey(config.Name))
+                    // Sadece başarılı veri çekme işlemlerinde cache'i güncelle
+                    _configurationsCache.Clear(); // Eski cache'i temizle
+                    foreach (var config in configurations)
                     {
-                        _configurationsCache.Add(config.Name, config);
+                        _configurationsCache[config.Name] = config;
                     }
-                    else
-                    {
-                        _configurationsCache[config.Name] = config; // Değişiklik varsa güncelle
-                    }
+                    Console.WriteLine("Configurations loaded and cache updated.");
                 }
             }
         }
         catch (Exception ex)
         {
-            // Storage'a ulaşılamazsa bir hata loglanabilir
+            // Hata durumunda mevcut cache'i kullanmaya devam et
             Console.WriteLine("Error loading configurations: " + ex.Message);
+            Console.WriteLine("Using cached configurations.");
+        }
+        finally
+        {
+            _semaphore.Release(); // Kilidi serbest bırak
         }
     }
 

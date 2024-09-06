@@ -34,8 +34,19 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.WithOrigins("https://localhost:5001") 
+                       .AllowAnyHeader()  // Tüm header'larý kabul et
+                       .AllowAnyMethod()  // Tüm HTTP metodlarýna (GET, POST, PUT, DELETE) izin ver
+                       .AllowCredentials(); // Kimlik doðrulamasý için izin
+            });
+        });
         var app = builder.Build();
 
+        app.UseCors();
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

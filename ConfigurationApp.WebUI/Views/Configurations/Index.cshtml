@@ -1,0 +1,90 @@
+﻿@model List<ConfigurationApp.Entities.Configuration>
+
+
+<div>
+    <h2>Konfigürasyonlar</h2>
+
+    <!-- Yeni Konfigürasyon Ekleme Butonu -->
+    <a href="/Configurations/Create" class="btn btn-primary mb-3">Yeni Konfigürasyon Ekle</a>
+
+    <!-- Filtreleme için Textbox -->
+    <input type="text" id="filterTextBox" class="form-control mb-3" placeholder="Konfigürasyon adı ile filtrele" />
+
+    <table class="table" id="configurationsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Type</th>
+                <th>Application Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Buraya dinamik olarak API'den gelen veriler eklenecek -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function editConfig(id) {
+        // Güncelleme sayfasına yönlendirme
+        window.location.href = `/Configurations/Edit/${id}`;
+    }
+
+    // Konfigürasyonu silme
+    function deleteConfig(id) {
+        fetch(`https://localhost:7076/api/configuration/${id}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Silme işlemi başarılıysa tabloyu yeniden yükle
+                    loadConfigurations();
+                } else {
+                    alert("Silme işlemi başarısız oldu.");
+                }
+            })
+            .catch(error => {
+                console.error("Bir hata oluştu:", error);
+                alert("Bir hata oluştu.");
+            });
+    }
+
+    // Tüm konfigürasyonları listeleme ve filtreleme
+    function loadConfigurations() {
+        const filter = document.getElementById('filterTextBox').value.toLowerCase(); // Filtre metni
+        fetch('https://localhost:7076/api/configuration')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector("#configurationsTable tbody");
+                tableBody.innerHTML = ''; // Mevcut tabloyu temizle
+
+                // Filtreyi uygulayarak tabloyu doldur
+                data.forEach(config => {
+                    if (config.name.toLowerCase().includes(filter)) {
+                        const row = `
+                                            <tr>
+                                                <td>${config.name}</td>
+                                                <td>${config.value}</td>
+                                                <td>${config.type}</td>
+                                                <td>${config.applicationName}</td>
+                                                <td>
+                                                    <button onclick="editConfig(${config.id})" class="btn btn-warning">Düzenle</button>
+                                                    <button onclick="deleteConfig(${config.id})" class="btn btn-danger">Sil</button>
+                                                </td>
+                                            </tr>`;
+                        tableBody.innerHTML += row;
+                    }
+                });
+            });
+    }
+
+    // Filtreleme kutusuna yazıldığında tabloyu güncelle
+    document.getElementById('filterTextBox').addEventListener('input', function () {
+        loadConfigurations();
+    });
+
+    // Sayfa yüklendiğinde konfigürasyonları yükle
+    document.addEventListener('DOMContentLoaded', loadConfigurations);
+</script>

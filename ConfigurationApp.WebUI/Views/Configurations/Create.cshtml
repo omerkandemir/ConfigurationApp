@@ -1,0 +1,39 @@
+﻿@model ConfigurationApp.Entities.Configuration
+
+<h2>Yeni Konfigürasyon Ekle</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Konfigürasyon Adı" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Value"></label>
+        <input asp-for="Value" class="form-control" placeholder="Değer" required />
+        <span asp-validation-for="Value" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" class="form-control">
+            <option value="string">String</option>
+            <option value="int">Integer</option>
+            <option value="bool">Boolean</option>
+            <option value="double">Double</option>
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ApplicationName"></label>
+        <input asp-for="ApplicationName" class="form-control" placeholder="Uygulama Adı" required />
+        <span asp-validation-for="ApplicationName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsActive"></label>
+        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+        <span asp-validation-for="IsActive" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
