@@ -11,17 +11,7 @@ public class ConfigurationDbContext : DbContext
     {
 
     }
-    //public ConfigurationDbContext()
-    //{
 
-    //}
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    if (!optionsBuilder.IsConfigured)
-    //    {
-    //        optionsBuilder.UseSqlServer(@"Data Source=(localdb)\Omer; Initial Catalog = ConfigurationDB;");
-    //    }
-    //}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

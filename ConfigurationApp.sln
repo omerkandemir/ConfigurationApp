@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.Entities", "ConfigurationApp.Entities\ConfigurationApp.Entities.csproj", "{E52E26C0-6901-4312-8209-0D95CA193156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.Entities", "ConfigurationApp.Entities\ConfigurationApp.Entities.csproj", "{E52E26C0-6901-4312-8209-0D95CA193156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.DataAccess", "ConfigurationApp.DataAccess\ConfigurationApp.DataAccess.csproj", "{041C8DA4-64CA-4E0F-BD84-D0F7675F58E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.DataAccess", "ConfigurationApp.DataAccess\ConfigurationApp.DataAccess.csproj", "{041C8DA4-64CA-4E0F-BD84-D0F7675F58E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.Business", "ConfigurationApp.Business\ConfigurationApp.Business.csproj", "{7B2C4D42-5CD6-4886-88F6-C4E7388DB4FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.Business", "ConfigurationApp.Business\ConfigurationApp.Business.csproj", "{7B2C4D42-5CD6-4886-88F6-C4E7388DB4FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.Core", "ConfigurationApp.Core\ConfigurationApp.Core.csproj", "{3AB3636A-998A-4B7A-8DC9-96331D699E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.Core", "ConfigurationApp.Core\ConfigurationApp.Core.csproj", "{3AB3636A-998A-4B7A-8DC9-96331D699E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.ConfigManagement.API", "ConfigurationApp.ConfigManagement.API\ConfigurationApp.ConfigManagement.API.csproj", "{C511E866-D63E-48CC-B318-69232D1306A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.ConfigManagement.API", "ConfigurationApp.ConfigManagement.API\ConfigurationApp.ConfigManagement.API.csproj", "{C511E866-D63E-48CC-B318-69232D1306A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.Library", "ConfigurationApp.Library\ConfigurationApp.Library.csproj", "{E6158528-124B-404E-A597-BDEEAC3A4125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C511E866-D63E-48CC-B318-69232D1306A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C511E866-D63E-48CC-B318-69232D1306A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C511E866-D63E-48CC-B318-69232D1306A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6158528-124B-404E-A597-BDEEAC3A4125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6158528-124B-404E-A597-BDEEAC3A4125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6158528-124B-404E-A597-BDEEAC3A4125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6158528-124B-404E-A597-BDEEAC3A4125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

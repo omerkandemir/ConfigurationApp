@@ -11,7 +11,6 @@ public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEnti
     where TContext : DbContext
 {
     protected readonly TContext _context;
-    // DbContext'i DI (Dependency Injection) ile alacak constructor
     public EfEntityRepositoryBase(TContext context)
     {
         _context = context;
