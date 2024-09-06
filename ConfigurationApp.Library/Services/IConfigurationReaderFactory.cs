@@ -2,5 +2,5 @@
 
 public interface IConfigurationReaderFactory
 {
-    ConfigurationReader Create(string applicationName, string connectionString, double refreshTimerIntervalInMs);
+    IConfigurationReader Create(string applicationName, string connectionString, double refreshTimerIntervalInMs);
 }

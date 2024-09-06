@@ -43,7 +43,7 @@ public class ConfigurationReader : IConfigurationReader
             {
                 // ApplicationName'e göre filtrele ve konfigürasyonları çek
                 var configurations = await context.Configurations
-                    .Where(config => config.ApplicationName == _applicationName && config.IsActive)
+                    .Where(config => config.IsActive && config.ApplicationName == _applicationName)
                     .ToListAsync();
 
                 // Yeni verileri cache'e ekle

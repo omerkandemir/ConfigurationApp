@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.ConfigMana
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.Library", "ConfigurationApp.Library\ConfigurationApp.Library.csproj", "{E6158528-124B-404E-A597-BDEEAC3A4125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.WebUI", "ConfigurationApp.WebUI\ConfigurationApp.WebUI.csproj", "{B08682BF-04E4-4186-A116-815397CF8690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationApp.WebUI", "ConfigurationApp.WebUI\ConfigurationApp.WebUI.csproj", "{B08682BF-04E4-4186-A116-815397CF8690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp.Tests", "ConfigurationApp.Tests\ConfigurationApp.Tests.csproj", "{BC55AA82-3455-4280-A25E-1BECE302AAED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B08682BF-04E4-4186-A116-815397CF8690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B08682BF-04E4-4186-A116-815397CF8690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B08682BF-04E4-4186-A116-815397CF8690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC55AA82-3455-4280-A25E-1BECE302AAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC55AA82-3455-4280-A25E-1BECE302AAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC55AA82-3455-4280-A25E-1BECE302AAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC55AA82-3455-4280-A25E-1BECE302AAED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
